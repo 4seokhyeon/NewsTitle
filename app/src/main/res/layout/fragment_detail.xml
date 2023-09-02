@@ -3,12 +3,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#536DFE"/>
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:text="NAVER NEWS"
+        android:textSize="50sp"
+        android:paddingStart="45dp"
+        android:paddingEnd="20dp"
+        />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/title1"
+                android:paddingBottom="8dp"
+                android:paddingTop="50dp"/>
+
+            <!-- 기사 제목 -->
+            <TextView
+                android:id="@+id/title_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="기사 제목"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"/>
+
+            <!-- 기사 내용 -->
+            <TextView
+                android:id="@+id/title_detail_con"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="기사 내용"
+                android:textSize="18sp"
+                android:lineSpacingExtra="4dp"/>
+
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>
