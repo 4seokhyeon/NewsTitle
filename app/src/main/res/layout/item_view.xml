@@ -26,7 +26,7 @@
 
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/titletext"
         android:layout_width="185dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -52,7 +52,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.361"
         app:layout_constraintStart_toEndOf="@+id/titleImg"
-        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/titletext"
         app:layout_constraintVertical_bias="0.415" />
 
     <View

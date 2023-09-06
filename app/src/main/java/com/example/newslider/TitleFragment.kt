@@ -7,27 +7,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.newslider.databinding.ActivityMainBinding
+import com.example.newslider.databinding.FragmentTitleBinding
 
 class TitleFragment : Fragment() {
+    private lateinit var binding: FragmentTitleBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: TitleAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view =  inflater.inflate(R.layout.fragment_title, container, false)
-        recyclerView = view.findViewById(R.id.recyclerView)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentTitleBinding.inflate(layoutInflater)
+        recyclerView = binding.recyclerView
 
+        // TitleManager 구현체 초기화 (실제 데이터를 가져오는 방식에 따라 수정 필요)
         val titleManager = NewsTitleimpl.getInstance()
-        val titleList = titleManager.titleList
 
-        adapter = TitleAdapter(requireContext(), titleList)
+        // RecyclerView 설정
+        adapter = TitleAdapter(titleManager.getProducts())
         recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(context)
 
-        // 리사이클러뷰의 레이아웃 매니저 설정 (예: 세로 스크롤)
-        val layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.layoutManager = layoutManager
-        return view
+        return binding.root
     }
-
-
-
 }

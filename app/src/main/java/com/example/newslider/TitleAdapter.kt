@@ -1,37 +1,47 @@
 package com.example.newslider
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newslider.databinding.ItemViewBinding
 
-class TitleAdapter(private val context: Context, val titles:List<NewItem>): RecyclerView.Adapter<TitleAdapter.TitleViewHolder>() {
-    private val titleList:MutableList<NewItem> = titles.toMutableList()
+class TitleAdapter(val titles: List<NewItem>) : RecyclerView.Adapter<TitleAdapter.TitleViewHolder>() {
+    interface OnItemClickListener {
+        fun onItemClick(data: NewItem, position: Int)
+    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TitleAdapter.TitleViewHolder {
-        val binding = ItemViewBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+    private var listener: OnItemClickListener? = null
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TitleViewHolder {
+        val binding = ItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return TitleViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: TitleAdapter.TitleViewHolder, position: Int) {
-        val titles = titles[position]
-        holder.bind(titles)
+    override fun onBindViewHolder(holder: TitleViewHolder, position: Int) {
+        val title = titles[position]
+        holder.bind(title)
+
+        // 아이템 클릭 리스너 설정
+        holder.itemView.setOnClickListener {
+            listener?.onItemClick(title, position)
+        }
     }
 
     override fun getItemCount(): Int {
-        return titleList.size
+        return titles.size
     }
 
-    inner class TitleViewHolder(private val binding: ItemViewBinding):RecyclerView.ViewHolder(binding.root){
-        fun bind(titles: NewItem) {
-            with(binding){
-                titleImg.setImageResource(titles.titleImage)
-                title.text = titles.title
-                contact.text = titles.article
-
+    inner class TitleViewHolder(private val binding: ItemViewBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(title: NewItem) {
+            with(binding) {
+                titleImg.setImageResource(title.titleImage)
+                titletext.text=title.title
+                contact.text=title.title
             }
         }
-
     }
 }
