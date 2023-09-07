@@ -17,6 +17,12 @@ class DetailFragment : Fragment() {
         val binding = FragmentDetailBinding.inflate(inflater, container, false)
 
 
+
+
+
+
+
+
         return binding.root
     }
 

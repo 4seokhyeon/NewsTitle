@@ -40,7 +40,7 @@ class TitleAdapter(val titles: List<NewItem>) : RecyclerView.Adapter<TitleAdapte
             with(binding) {
                 titleImg.setImageResource(title.titleImage)
                 titletext.text=title.title
-                contact.text=title.title
+                contact.text=title.article
             }
         }
     }

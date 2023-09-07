@@ -1,5 +1,6 @@
 package com.example.newslider
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,5 +31,14 @@ class TitleFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         return binding.root
+    }
+
+    private fun isLandScape(): Boolean {
+        val context = context
+        if (context != null) {
+            val configuration = context.resources.configuration
+            return configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+        }
+        return false
     }
 }
